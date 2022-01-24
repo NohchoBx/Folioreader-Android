@@ -46,6 +46,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/define" />
 
+<<<<<<< HEAD
                 <TextView
                     android:id="@+id/translateSelection"
                     style="@style/TextViewTextSelector"
@@ -53,6 +54,8 @@
                     android:layout_height="wrap_content"
                     android:text="Гочда" />
 
+=======
+>>>>>>> 55d2e35cbf793191a0f7b0ea50ba7d0eb3fbefdf
             </LinearLayout>
 
             <View

@@ -66,6 +66,7 @@
                     android:text="@string/wikipedia"
                     android:textColor="@drawable/content_highlight_text_selector"
                     android:textSize="16sp" />
+<<<<<<< HEAD
 
                 <TextView
                     android:id="@+id/btn_dosham"
@@ -80,6 +81,8 @@
                     android:textSize="16sp" />
 
 
+=======
+>>>>>>> 55d2e35cbf793191a0f7b0ea50ba7d0eb3fbefdf
             </LinearLayout>
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>

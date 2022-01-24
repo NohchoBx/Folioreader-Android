@@ -88,7 +88,11 @@ public class HomeActivity extends AppCompatActivity
 
                 folioReader.setReadLocator(readLocator);
                 folioReader.setConfig(config, true)
+<<<<<<< HEAD
                         .openBook("file:///android_asset/dicar.epub");
+=======
+                        .openBook("file:///android_asset/TheSilverChair.epub");
+>>>>>>> 55d2e35cbf793191a0f7b0ea50ba7d0eb3fbefdf
             }
         });
     }
@@ -174,9 +178,15 @@ public class HomeActivity extends AppCompatActivity
 
     @Override
     public void onHighlight(HighLight highlight, HighLight.HighLightAction type) {
+<<<<<<< HEAD
         /*Toast.makeText(this,
                 "highlight id = " + highlight.getUUID() + " type = " + type,
                 Toast.LENGTH_SHORT).show();*/
+=======
+        Toast.makeText(this,
+                "highlight id = " + highlight.getUUID() + " type = " + type,
+                Toast.LENGTH_SHORT).show();
+>>>>>>> 55d2e35cbf793191a0f7b0ea50ba7d0eb3fbefdf
     }
 
     @Override

@@ -33,7 +33,10 @@ import com.folioreader.ui.activity.FolioActivity
 import com.folioreader.ui.activity.FolioActivityCallback
 import com.folioreader.ui.fragment.DictionaryFragment
 import com.folioreader.ui.fragment.FolioPageFragment
+<<<<<<< HEAD
 import com.folioreader.ui.fragment.TranslationFragment
+=======
+>>>>>>> 55d2e35cbf793191a0f7b0ea50ba7d0eb3fbefdf
 import com.folioreader.util.AppUtil
 import com.folioreader.util.HighlightUtil
 import com.folioreader.util.UiUtil
@@ -339,10 +342,13 @@ class FolioWebView : WebView {
             dismissPopupWindow()
             loadUrl("javascript:onTextSelectionItemClicked(${it.id})")
         }
+<<<<<<< HEAD
         viewTextSelection.translateSelection.setOnClickListener {
             dismissPopupWindow()
             loadUrl("javascript:onTextSelectionItemClicked(${it.id})")
         }
+=======
+>>>>>>> 55d2e35cbf793191a0f7b0ea50ba7d0eb3fbefdf
     }
 
     @JavascriptInterface
@@ -354,8 +360,13 @@ class FolioWebView : WebView {
             R.id.copySelection -> {
                 Log.v(LOG_TAG, "-> onTextSelectionItemClicked -> copySelection -> $selectedText")
                 UiUtil.copyToClipboard(context, selectedText)
+<<<<<<< HEAD
                 /*Toast.makeText(context, context.getString(R.string.copied), Toast.LENGTH_SHORT)
                     .show()*/
+=======
+                Toast.makeText(context, context.getString(R.string.copied), Toast.LENGTH_SHORT)
+                    .show()
+>>>>>>> 55d2e35cbf793191a0f7b0ea50ba7d0eb3fbefdf
             }
             R.id.shareSelection -> {
                 Log.v(LOG_TAG, "-> onTextSelectionItemClicked -> shareSelection -> $selectedText")
@@ -365,10 +376,13 @@ class FolioWebView : WebView {
                 Log.v(LOG_TAG, "-> onTextSelectionItemClicked -> defineSelection -> $selectedText")
                 uiHandler.post { showDictDialog(selectedText) }
             }
+<<<<<<< HEAD
             R.id.translateSelection -> {
                 Log.v(LOG_TAG, "-> onTextSelectionItemClicked -> translateSelection -> $selectedText")
                 uiHandler.post { showGochDaDialog(selectedText) }
             }
+=======
+>>>>>>> 55d2e35cbf793191a0f7b0ea50ba7d0eb3fbefdf
             else -> {
                 Log.w(LOG_TAG, "-> onTextSelectionItemClicked -> unknown id = $id")
             }
@@ -386,6 +400,7 @@ class FolioWebView : WebView {
         )
     }
 
+<<<<<<< HEAD
     private fun showGochDaDialog(selectedText: String?){
         Log.v(LOG_TAG, "-> onTextSelectionItemClicked -> translateSelection -> showGochDaDialog $selectedText")
 
@@ -400,6 +415,8 @@ class FolioWebView : WebView {
     }
 
 
+=======
+>>>>>>> 55d2e35cbf793191a0f7b0ea50ba7d0eb3fbefdf
     private fun onHighlightColorItemsClicked(style: HighlightStyle, isAlreadyCreated: Boolean) {
         parentFragment.highlight(style, isAlreadyCreated)
         dismissPopupWindow()
@@ -839,8 +856,13 @@ class FolioWebView : WebView {
     }
 
     private fun showTextSelectionPopup() {
+<<<<<<< HEAD
         /*val config = AppUtil.getSavedConfig(context)!!
         if(config.isShowTextSelection) {*/
+=======
+        val config = AppUtil.getSavedConfig(context)!!
+        if(config.isShowTextSelection) {
+>>>>>>> 55d2e35cbf793191a0f7b0ea50ba7d0eb3fbefdf
             Log.v(LOG_TAG, "-> showTextSelectionPopup")
             Log.d(LOG_TAG, "-> showTextSelectionPopup -> To be laid out popupRect -> $popupRect")
             popupWindow.dismiss()
@@ -877,9 +899,15 @@ class FolioWebView : WebView {
             isScrollingCheckDuration = 0
             if (!destroyed)
                 uiHandler.postDelayed(isScrollingRunnable, IS_SCROLLING_CHECK_TIMER.toLong())
+<<<<<<< HEAD
         /*} else {
             Log.v(LOG_TAG, "-> doNotShowTextSelectionPopup")
         }*/
+=======
+        } else {
+            Log.v(LOG_TAG, "-> doNotShowTextSelectionPopup")
+        }
+>>>>>>> 55d2e35cbf793191a0f7b0ea50ba7d0eb3fbefdf
 
     }
 }
