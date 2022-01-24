@@ -159,10 +159,7 @@ public class DictionaryFragment extends DialogFragment
             view.findViewById(R.id.contentView).setBackgroundColor(Color.BLACK);
             dictionary.setBackgroundDrawable(UiUtil.createStateDrawable(themeColor, Color.BLACK));
             wikipedia.setBackgroundDrawable(UiUtil.createStateDrawable(themeColor, Color.BLACK));
-<<<<<<< HEAD
-=======
             dictionary.setTextColor(UiUtil.getColorList(Color.BLACK, themeColor));
->>>>>>> 55d2e35cbf793191a0f7b0ea50ba7d0eb3fbefdf
             wikipedia.setTextColor(UiUtil.getColorList(Color.BLACK, themeColor));
             int nightTextColor = ContextCompat.getColor(getContext(), R.color.night_text_color);
             wikiWord.setTextColor(nightTextColor);
