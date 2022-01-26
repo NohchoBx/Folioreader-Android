@@ -14,6 +14,7 @@ import com.folioreader.model.HighLight;
 import com.folioreader.model.HighlightImpl;
 import com.folioreader.model.locators.ReadLocator;
 import com.folioreader.model.sqlite.DbAdapter;
+import com.folioreader.model.sqlite.DoshamDbAdapter;
 import com.folioreader.network.QualifiedTypeConverterFactory;
 import com.folioreader.network.R2StreamerApi;
 import com.folioreader.ui.activity.FolioActivity;
@@ -123,6 +124,9 @@ public class FolioReader {
         this.context = context;
         DbAdapter.initialize(context);
 
+        DoshamDbAdapter mDbHelper = new DoshamDbAdapter(context);
+        mDbHelper.createDatabase();
+        mDbHelper.open();
         LocalBroadcastManager localBroadcastManager = LocalBroadcastManager.getInstance(context);
         localBroadcastManager.registerReceiver(highlightReceiver,
                 new IntentFilter(HighlightImpl.BROADCAST_EVENT));

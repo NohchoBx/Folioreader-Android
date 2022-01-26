@@ -33,6 +33,7 @@ import com.folioreader.ui.activity.FolioActivity
 import com.folioreader.ui.activity.FolioActivityCallback
 import com.folioreader.ui.fragment.DictionaryFragment
 import com.folioreader.ui.fragment.FolioPageFragment
+import com.folioreader.ui.fragment.TranslationFragment
 import com.folioreader.util.AppUtil
 import com.folioreader.util.HighlightUtil
 import com.folioreader.util.UiUtil
@@ -338,6 +339,10 @@ class FolioWebView : WebView {
             dismissPopupWindow()
             loadUrl("javascript:onTextSelectionItemClicked(${it.id})")
         }
+        viewTextSelection.translateSelection.setOnClickListener {
+            dismissPopupWindow()
+            loadUrl("javascript:onTextSelectionItemClicked(${it.id})")
+        }
     }
 
     @JavascriptInterface
@@ -349,6 +354,8 @@ class FolioWebView : WebView {
             R.id.copySelection -> {
                 Log.v(LOG_TAG, "-> onTextSelectionItemClicked -> copySelection -> $selectedText")
                 UiUtil.copyToClipboard(context, selectedText)
+                /*Toast.makeText(context, context.getString(R.string.copied), Toast.LENGTH_SHORT)
+                    .show()*/
                 Toast.makeText(context, context.getString(R.string.copied), Toast.LENGTH_SHORT)
                     .show()
             }
@@ -360,6 +367,12 @@ class FolioWebView : WebView {
                 Log.v(LOG_TAG, "-> onTextSelectionItemClicked -> defineSelection -> $selectedText")
                 uiHandler.post { showDictDialog(selectedText) }
             }
+
+            R.id.translateSelection -> {
+                Log.v(LOG_TAG, "-> onTextSelectionItemClicked -> translateSelection -> $selectedText")
+                uiHandler.post { showGochDaDialog(selectedText) }
+            }
+
             else -> {
                 Log.w(LOG_TAG, "-> onTextSelectionItemClicked -> unknown id = $id")
             }
@@ -376,6 +389,20 @@ class FolioWebView : WebView {
             DictionaryFragment::class.java.name
         )
     }
+
+    private fun showGochDaDialog(selectedText: String?){
+        Log.v(LOG_TAG, "-> onTextSelectionItemClicked -> translateSelection -> showGochDaDialog $selectedText")
+
+        val translationFragment = TranslationFragment()
+        val bundle = Bundle()
+        bundle.putString(Constants.SELECTED_WORD, selectedText?.trim())
+        translationFragment.arguments = bundle
+        translationFragment.show(
+            parentFragment.fragmentManager!!,
+            TranslationFragment::class.java.name
+        )
+    }
+
 
     private fun onHighlightColorItemsClicked(style: HighlightStyle, isAlreadyCreated: Boolean) {
         parentFragment.highlight(style, isAlreadyCreated)
@@ -816,8 +843,10 @@ class FolioWebView : WebView {
     }
 
     private fun showTextSelectionPopup() {
-        val config = AppUtil.getSavedConfig(context)!!
-        if(config.isShowTextSelection) {
+        /*val config = AppUtil.getSavedConfig(context)!!
+        if(config.isShowTextSelection) {*/
+        /*val config = AppUtil.getSavedConfig(context)!!
+        if(config.isShowTextSelection) {*/
             Log.v(LOG_TAG, "-> showTextSelectionPopup")
             Log.d(LOG_TAG, "-> showTextSelectionPopup -> To be laid out popupRect -> $popupRect")
             popupWindow.dismiss()
@@ -854,9 +883,12 @@ class FolioWebView : WebView {
             isScrollingCheckDuration = 0
             if (!destroyed)
                 uiHandler.postDelayed(isScrollingRunnable, IS_SCROLLING_CHECK_TIMER.toLong())
-        } else {
+        /*} else {
             Log.v(LOG_TAG, "-> doNotShowTextSelectionPopup")
-        }
+        }*/
+        /*} else {
+            Log.v(LOG_TAG, "-> doNotShowTextSelectionPopup")
+        }*/
 
     }
 }
