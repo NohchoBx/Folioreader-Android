@@ -60,7 +60,7 @@ public class DoshamDbAdapter {
 
                 }*/
 
-            }else {
+            } else {
                 dosh = dosh.substring(0, dosh.length() - 2);
                 mCur = mDb.rawQuery("SELECT * FROM dosham where word1 like '%" + dosh + "%'", null);
             }

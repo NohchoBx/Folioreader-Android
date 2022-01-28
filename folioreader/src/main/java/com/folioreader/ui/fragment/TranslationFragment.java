@@ -1,7 +1,5 @@
 package com.folioreader.ui.fragment;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -10,17 +8,25 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.folioreader.Constants;
 import com.folioreader.R;
+import com.folioreader.model.Dosh;
+import com.folioreader.model.HighlightImpl;
 import com.folioreader.model.sqlite.DoshamDbAdapter;
-import com.folioreader.ui.adapter.HighlightAdapter;
+import com.folioreader.ui.adapter.DoshamAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TranslationFragment extends DialogFragment {
 
@@ -31,7 +37,11 @@ public class TranslationFragment extends DialogFragment {
     private TextView dosh, meaning;
     private ProgressBar progressBar;
     //private DoshamDbAdapter adapter;
+    private ImageView imageViewClose;
 
+    RecyclerView recyclerView;
+
+    List<Dosh> doshList = new ArrayList<>();
 
 
     @Override
@@ -47,13 +57,16 @@ public class TranslationFragment extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.translation, container);
+        return inflater.inflate(R.layout.dosh_list_view, container);
     }
 
     @Override
     public void onActivityCreated(Bundle arg0) {
         super.onActivityCreated(arg0);
         getDialog().getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        int width = getActivity().getResources().getDisplayMetrics().widthPixels;
+        int height = getActivity().getResources().getDisplayMetrics().heightPixels;
+        getDialog().getWindow().setLayout(width - 200, height / 2);
     }
 
 
@@ -70,10 +83,10 @@ public class TranslationFragment extends DialogFragment {
         Log.v(TAG, "-> TranslationFragment");
 
         //LinearLayout item = (LinearLayout) view.findViewById(R.id.translation);
-        dosh = (TextView) view.findViewById(R.id.dosh);
-        meaning = (TextView) view.findViewById(R.id.meaning);
+        //dosh = (TextView) view.findViewById(R.id.dosh);
+        //meaning = (TextView) view.findViewById(R.id.meaning);
 
-        progressBar = (ProgressBar) view.findViewById(R.id.progress);
+
 
         //will create a view of our custom dialog layout
         //View alertCustomdialog = getLayoutInflater().inflate(R.layout.translation, item, false);
@@ -82,18 +95,46 @@ public class TranslationFragment extends DialogFragment {
 
 
         //this line removed app bar from dialog and make it transperent and you see the image is like floating outside dialog box.
-        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        //getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
+
+        imageViewClose = view.findViewById(R.id.btn_close);
+        imageViewClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
 
         Cursor cursor = DoshamDbAdapter.getDosh(word);
 
-        if (((cursor != null) && (cursor.getCount() > 0))) {
-            cursor.moveToFirst();
-            dosh.setText(cursor.getString(cursor.getColumnIndex("word")).replaceAll("\\<.*?\\>", ""));
-            meaning.setText(cursor.getString(cursor.getColumnIndex("translate")).replaceAll("\\<.*?\\>", ""));
-            Log.v(TAG, "-> TranslationFragment -> cursor -> " + cursor.getString(cursor.getColumnIndex("word")));
+        if(cursor.moveToFirst()){
+            do{
+                Log.v(TAG, "-> TranslationFragment -> cursor -> " + cursor.getString(cursor.getColumnIndex("word")) + "  " +  cursor.getString(cursor.getColumnIndex("translate1")));
 
+                doshList.add(new Dosh(cursor.getString(cursor.getColumnIndex("word")), cursor.getString(cursor.getColumnIndex("word")) , cursor.getString(cursor.getColumnIndex("translate1")), cursor.getString(cursor.getColumnIndex("translate1"))));
+            }while(cursor.moveToNext());
+        } else {
+            //do something else
         }
+
+        //if (((cursor != null) && (cursor.getCount() > 0))) {
+
+            /*while (cursor.moveToNext()) {
+                doshList.add(new Dosh(cursor.getString(cursor.getColumnIndex("word")), cursor.getString(cursor.getColumnIndex("word")) , cursor.getString(cursor.getColumnIndex("translate1")), cursor.getString(cursor.getColumnIndex("translate1"))));
+            }*/
+            /*dosh.setText(cursor.getString(cursor.getColumnIndex("word")).replaceAll("\\<.*?\\>", ""));
+            meaning.setText(cursor.getString(cursor.getColumnIndex("translate")).replaceAll("\\<.*?\\>", ""));*/
+
+        //}
+
+        DoshamAdapter movieAdapter = new DoshamAdapter(getActivity(), doshList);
+        recyclerView = (RecyclerView) view.findViewById(R.id.doshList);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setAdapter(movieAdapter);
+        recyclerView.setVisibility(View.VISIBLE);
+
 
 
 

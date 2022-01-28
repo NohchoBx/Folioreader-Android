@@ -39,12 +39,12 @@
                     android:layout_height="wrap_content"
                     android:text="@string/share" />
 
-                <TextView
+                <!--<TextView
                     android:id="@+id/defineSelection"
                     style="@style/TextViewTextSelector"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/define" />
+                    android:text="@string/define" />-->
 
                 <TextView
                     android:id="@+id/translateSelection"
