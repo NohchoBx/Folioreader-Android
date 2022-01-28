@@ -38,6 +38,7 @@ public class TranslationFragment extends DialogFragment {
     private ProgressBar progressBar;
     //private DoshamDbAdapter adapter;
     private ImageView imageViewClose;
+    private TextView no_results;
 
     RecyclerView recyclerView;
 
@@ -86,6 +87,8 @@ public class TranslationFragment extends DialogFragment {
         //dosh = (TextView) view.findViewById(R.id.dosh);
         //meaning = (TextView) view.findViewById(R.id.meaning);
 
+        no_results = view.findViewById(R.id.no_results);
+        no_results.setVisibility(View.GONE);
 
 
         //will create a view of our custom dialog layout
@@ -127,6 +130,10 @@ public class TranslationFragment extends DialogFragment {
             meaning.setText(cursor.getString(cursor.getColumnIndex("translate")).replaceAll("\\<.*?\\>", ""));*/
 
         //}
+
+        if(doshList.isEmpty()){
+            no_results.setVisibility(View.VISIBLE);
+        }
 
         DoshamAdapter movieAdapter = new DoshamAdapter(getActivity(), doshList);
         recyclerView = (RecyclerView) view.findViewById(R.id.doshList);
