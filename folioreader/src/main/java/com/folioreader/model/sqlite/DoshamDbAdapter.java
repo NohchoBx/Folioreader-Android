@@ -53,6 +53,8 @@ public class DoshamDbAdapter {
 
         dosh.replaceAll("i", "I");
         dosh.replaceAll("l", "I");
+        dosh.replaceAll("I", "I");
+
         System.out.println("dosh changed");
 
         try {
