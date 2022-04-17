@@ -53,7 +53,7 @@ public class DoshamDbAdapter {
 
         dosh.replaceAll("i", "I");
         dosh.replaceAll("l", "I");
-
+        System.out.println("dosh changed");
 
         try {
             //String sql = "SELECT * FROM dosham where word LIKE" +  dosh  + "LIMIT 1";
