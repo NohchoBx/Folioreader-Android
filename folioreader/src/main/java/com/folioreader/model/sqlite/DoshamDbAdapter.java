@@ -51,9 +51,17 @@ public class DoshamDbAdapter {
         Log.e(TAG, "getDosh >>" +dosh);
 
 
-        dosh.replaceAll("i", "I");
-        dosh.replaceAll("l", "I");
-        dosh.replaceAll("I", "I");
+        dosh.replaceAll("i", "Ӏ");
+        dosh.replaceAll("l", "Ӏ");
+        dosh.replaceAll("I", "Ӏ");
+
+        if(dosh.charAt(0) != 'Ӏ'){
+
+            dosh = Character.toLowerCase(dosh.charAt(0)) + dosh.substring(1);
+        } else {
+
+            dosh = Character.toUpperCase(dosh.charAt(0)) + dosh.substring(1);
+        }
 
         Log.e(TAG, "doshCHanged >> " +dosh);
 
