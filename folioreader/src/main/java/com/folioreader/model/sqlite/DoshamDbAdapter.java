@@ -55,7 +55,7 @@ public class DoshamDbAdapter {
         dosh.replaceAll("l", "I");
         dosh.replaceAll("I", "I");
 
-        System.out.println("dosh changed");
+        Log.e(TAG, "doshCHanged >> " +dosh);
 
         try {
             //String sql = "SELECT * FROM dosham where word LIKE" +  dosh  + "LIMIT 1";
