@@ -49,6 +49,12 @@ public class DoshamDbAdapter {
 
     public static Cursor getDosh(String dosh) {
         Log.e(TAG, "getDosh >>" +dosh);
+
+
+        dosh.replaceAll("i", "I");
+        dosh.replaceAll("l", "I");
+
+
         try {
             //String sql = "SELECT * FROM dosham where word LIKE" +  dosh  + "LIMIT 1";
             Cursor mCur = mDb.rawQuery("SELECT * FROM dosham where word1 like '%" + dosh + "%'", null);
