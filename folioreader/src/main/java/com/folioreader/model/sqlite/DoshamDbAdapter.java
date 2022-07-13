@@ -49,6 +49,22 @@ public class DoshamDbAdapter {
 
     public static Cursor getDosh(String dosh) {
         Log.e(TAG, "getDosh >>" +dosh);
+
+
+        dosh.replaceAll("i", "Ӏ");
+        dosh.replaceAll("l", "Ӏ");
+        dosh.replaceAll("I", "Ӏ");
+
+        if(dosh.charAt(0) != 'Ӏ'){
+
+            dosh = Character.toLowerCase(dosh.charAt(0)) + dosh.substring(1);
+        } else {
+
+            dosh = Character.toUpperCase(dosh.charAt(0)) + dosh.substring(1);
+        }
+
+        Log.e(TAG, "doshCHanged >> " +dosh);
+
         try {
             //String sql = "SELECT * FROM dosham where word LIKE" +  dosh  + "LIMIT 1";
             Cursor mCur = mDb.rawQuery("SELECT * FROM dosham where word1 like '%" + dosh + "%'", null);
@@ -60,7 +76,7 @@ public class DoshamDbAdapter {
 
                 }*/
 
-            }else {
+            } else {
                 dosh = dosh.substring(0, dosh.length() - 2);
                 mCur = mDb.rawQuery("SELECT * FROM dosham where word1 like '%" + dosh + "%'", null);
             }

@@ -8,7 +8,7 @@
         android:background="@drawable/dialog_translation_bg"
         android:id="@+id/translation"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginLeft="20dp"
         android:orientation="vertical"
         android:layout_marginRight="20dp"
@@ -42,6 +42,11 @@
                 android:textColor="#000"
                 android:textStyle="bold|italic"
                 />
+
+            <ListView
+                android:id="@+id/list_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
             <Button
                 android:layout_width="wrap_content"
