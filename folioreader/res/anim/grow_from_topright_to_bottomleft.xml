@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="utf-8"?>
 <set xmlns:android="http://schemas.android.com/apk/res/android">
     <scale
@@ -14,21 +13,4 @@
         android:fromAlpha="0.0"
         android:toAlpha="1.0"
         android:duration="@android:integer/config_shortAnimTime" />
-=======
-<?xml version="1.0" encoding="utf-8"?>
-<set xmlns:android="http://schemas.android.com/apk/res/android">
-    <scale
-        android:fromXScale="0.3"
-        android:toXScale="1.0"
-        android:fromYScale="0.3"
-        android:toYScale="1.0"
-        android:pivotX="100%"
-        android:pivotY="0%"
-        android:duration="@android:integer/config_shortAnimTime" />
-    <alpha
-        android:interpolator="@android:anim/decelerate_interpolator"
-        android:fromAlpha="0.0"
-        android:toAlpha="1.0"
-        android:duration="@android:integer/config_shortAnimTime" />
->>>>>>> 55d2e35cbf793191a0f7b0ea50ba7d0eb3fbefdf
 </set>

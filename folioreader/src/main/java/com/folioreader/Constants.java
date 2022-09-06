@@ -1,4 +1,3 @@
-
 package com.folioreader;
 
 import android.Manifest;
@@ -40,4 +39,3 @@ public class Constants {
         };
     }
 }
-

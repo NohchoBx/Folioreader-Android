@@ -19,7 +19,7 @@
     <string name="copied">Copied</string>
     <string name="send_to">Send to</string>
 
-    <string name="copy">Copy</string>
+    <string name="copy">C0py</string>
     <string name="share">Share</string>
     <string name="define">Define</string>
     <string name="highlight">Highlight</string>
@@ -120,4 +120,3 @@
     <string name="callClearSelection" translatable="false">javascript:clearSelection()</string>
 
 </resources>
-

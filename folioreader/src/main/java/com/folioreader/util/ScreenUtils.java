@@ -1,4 +1,3 @@
-
 package com.folioreader.util;
 
 import android.content.Context;
@@ -55,4 +54,3 @@ public class ScreenUtils {
         return val.intValue();
     }
 }
-
