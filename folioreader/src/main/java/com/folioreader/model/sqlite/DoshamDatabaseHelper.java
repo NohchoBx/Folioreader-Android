@@ -78,6 +78,7 @@ public class DoshamDatabaseHelper extends SQLiteOpenHelper {
     public boolean openDataBase() throws SQLException {
         // Log.v("DB_PATH", DB_FILE.getAbsolutePath());
         mDataBase = SQLiteDatabase.openDatabase(String.valueOf(DB_FILE), null, SQLiteDatabase.CREATE_IF_NECESSARY);
+        mDataBase.setVersion(2);
         // mDataBase = SQLiteDatabase.openDatabase(DB_FILE, null, SQLiteDatabase.NO_LOCALIZED_COLLATORS);
         return mDataBase != null;
     }
